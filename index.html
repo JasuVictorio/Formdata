@@ -7,15 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
+            --primary: #F6FF7A;
+            --secondary: #CC99FF;
+            --accent: #CC99FF;
+            --light: #2E2F30;
+            --dark: #191A1B;
+            --text: #E1E2E3;
+            --text-secondary: #A1A2A3;
             --success: #4cc9f0;
             --warning: #f72585;
             --border-radius: 12px;
-            --box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            --box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
         
         * {
@@ -26,8 +28,8 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f5f7ff;
-            color: var(--dark);
+            background-color: var(--dark);
+            color: var(--text);
             line-height: 1.6;
             padding: 2rem;
         }
@@ -35,17 +37,18 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: white;
+            background: var(--light);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             overflow: hidden;
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            background: linear-gradient(135deg, var(--dark), #252627);
+            color: var(--primary);
             padding: 2rem;
             text-align: center;
+            border-bottom: 1px solid #333;
         }
         
         h1 {
@@ -56,6 +59,17 @@
         .subtitle {
             font-weight: 300;
             opacity: 0.9;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+        
+        .welcome-message {
+            background: #252627;
+            padding: 1rem;
+            margin: 1rem 2rem;
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--secondary);
+            font-size: 0.95rem;
         }
         
         .decision-tree {
@@ -75,7 +89,7 @@
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-            color: var(--dark);
+            color: var(--primary);
         }
         
         .options {
@@ -86,28 +100,36 @@
         }
         
         .option-btn {
-            background: white;
-            border: 2px solid #e9ecef;
+            background: #252627;
+            border: 1px solid #333;
             border-radius: var(--border-radius);
             padding: 1.2rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
+            color: var(--text);
         }
         
         .option-btn:hover {
-            border-color: var(--accent);
+            border-color: var(--secondary);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.1);
+            box-shadow: 0 5px 15px rgba(204, 153, 255, 0.1);
         }
         
         .option-btn:active {
             transform: translateY(0);
         }
         
+        .option-btn small {
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 0.3rem;
+            font-size: 0.8rem;
+        }
+        
         .result {
-            background: #f8f9fa;
+            background: #252627;
             border-radius: var(--border-radius);
             padding: 2rem;
             margin-top: 1rem;
@@ -133,15 +155,14 @@
             flex: 1;
             padding: 1rem;
             border-radius: var(--border-radius);
+            background: rgba(0,0,0,0.2);
         }
         
         .pros {
-            background-color: rgba(76, 201, 240, 0.1);
-            border-left: 4px solid var(--success);
+            border-left: 4px solid var(--primary);
         }
         
         .cons {
-            background-color: rgba(247, 37, 133, 0.05);
             border-left: 4px solid var(--warning);
         }
         
@@ -150,8 +171,16 @@
             font-weight: 600;
         }
         
+        .pros h4 {
+            color: var(--primary);
+        }
+        
+        .cons h4 {
+            color: var(--warning);
+        }
+        
         .back-btn {
-            background: #e9ecef;
+            background: #333;
             border: none;
             border-radius: 6px;
             padding: 0.6rem 1.2rem;
@@ -159,10 +188,11 @@
             cursor: pointer;
             margin-top: 1.5rem;
             transition: background 0.2s ease;
+            color: var(--text);
         }
         
         .back-btn:hover {
-            background: #dee2e6;
+            background: #444;
         }
         
         @keyframes fadeIn {
@@ -173,12 +203,12 @@
         .tool-icon {
             font-size: 2rem;
             margin-bottom: 0.5rem;
-            color: var(--primary);
+            color: var(--secondary);
         }
         
         .progress-bar {
             height: 6px;
-            background: #e9ecef;
+            background: #333;
             border-radius: 3px;
             margin-bottom: 2rem;
             overflow: hidden;
@@ -186,9 +216,61 @@
         
         .progress {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             width: 0%;
             transition: width 0.3s ease;
+        }
+        
+        .more-info {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .info-btn {
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            border-radius: 6px;
+            padding: 0.8rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        
+        .info-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+        }
+        
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        ul {
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.3rem;
         }
     </style>
 </head>
@@ -196,8 +278,12 @@
     <div class="container">
         <header>
             <h1>Analytics Tool Selector</h1>
-            <p class="subtitle">Find the right analytics solution for your product</p>
+            <p class="subtitle">Find the perfect analytics solution for your product</p>
         </header>
+        
+        <div class="welcome-message">
+            <p>Hey, I know choosing the right analytics tool can be tricky. This quick guide will help you find the best fit based on your product type and needs.</p>
+        </div>
         
         <div class="progress-bar">
             <div class="progress" id="progress"></div>
@@ -468,7 +554,17 @@
                 <button class="back-btn" onclick="showNode('q2-mobile', 33)">← Back</button>
             </div>
         </div>
+        
+        <div class="more-info">
+            <a href="https://www.notion.so/rootstrap/Product-Data-Lab-1df59347eba68048af14c3cda9507fdf" class="info-btn" target="_blank">
+                📊 Find more info in: The Product Data Lab
+            </a>
+        </div>
     </div>
+    
+    <footer>
+        If you have questions, don't hesitate to contact me: <a href="mailto:jasury.victorio@rootstrap.com">jasury.victorio@rootstrap.com</a>
+    </footer>
 
     <script>
         function showNode(nodeId, progress) {
